@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -494,5 +496,19 @@ public class MainController {
 		Role role = roleService.findById(1L);
 		TimeUnit.SECONDS.sleep(10);
 		return role;
+    }
+	
+	@GetMapping("/createDepartments")
+    @ResponseBody
+    public Department createDepartments() {
+		Department department = new Department();
+		department.setName("test");
+		return departmentRepository.save(department);
+    }
+	
+	@GetMapping("/getDepartmentsPagination")
+    @ResponseBody
+    public Page<Department> getDepartmentsPagination(Pageable pageRequest) {
+		return departmentRepository.findByName("test", pageRequest);
     }
 }
