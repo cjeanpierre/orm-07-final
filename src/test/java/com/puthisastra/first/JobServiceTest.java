@@ -29,7 +29,7 @@ public class JobServiceTest {
 	public void transactionsWithAnnotationWithInitalImportData() {
 		jobService.transactionsWithAnnotation();
 		List<Job> jobs = jobRepository.findAll();
- 		assertEquals(6, jobRepository.count());
+ 		assertEquals(6, jobs.size());
 	}
 	
 	@Test
@@ -37,7 +37,7 @@ public class JobServiceTest {
 	public void transactionsWithAnnotationShouldCreate3Jobs() {
 		jobService.transactionsWithAnnotation();
 		List<Job> jobs = jobRepository.findAll();
-		assertEquals(3, jobRepository.count());
+		assertEquals(3, jobs.size());
 	}
 	
 }
